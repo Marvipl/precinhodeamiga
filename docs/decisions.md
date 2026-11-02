@@ -48,6 +48,10 @@ Cada linha diz o que foi decidido e onde está no código. Quando o dono confirm
 | S25 | Repositório dos agentes | `precinho-agentes`, gerado a partir de `agentes/` | pacote dos Agentes |
 | S26 | Guarda de dados | Mensagens 90 dias após a última interação; registro dos jobs 90 dias; exclusão a pedido em até 15 dias | pacotes da V2 e limpeza |
 | S27 | Eliminatórios da loja | Nota mínima e avaliações mínimas sem valor (`null` = não filtra) até o dono definir | `core/config.ts` |
+| S-P6-1 | Estado das integrações | Só o Marcus vê (F-14 lista no papel dele); a Lana não vê o card | `integracoes-estado`, `src/pages/configuracoes/` |
+| S-P6-2 | Validação das Configurações | Links só https (WhatsApp em whatsapp.com, Telegram em t.me); pesos da nota somam 100; artes de 3 a 5; blocos com fim depois do início; teto da rotina de 0 a 100 | `core/configuracoes.ts`, `core/painel-agentes.ts` |
+| S-P6-3 | Próxima execução no painel | Calculada pelos horários do Anexo A.3 (curadoria 05:37, Atendente a cada 30 min das 8h às 22h30, Coach 06:23, Analista 06:43 e Radar 07:07 às segundas); redação só sob demanda | `core/painel-agentes.ts` |
+| S-P6-4 | Uso do dia | Só o Marcus vê o uso contra o teto (as tentativas são só do dono pela RLS) | `src/pages/como-funciona/` |
 
 ## Crescimento e conteúdo extra (pacote P14, F-27 e F-28)
 

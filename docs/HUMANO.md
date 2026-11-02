@@ -64,3 +64,4 @@ Ordem sugerida: do item 1 ao 9. Nenhuma chave entra no repositório.
 <!-- Cada pacote acrescenta aqui o que só o dono pode fazer, com uma linha por item. -->
 - [ ] (P14) Confirmar as suposições S-P14-1 a S-P14-10 de `docs/decisions.md` (crescimento e conteúdo extra da Redatora).
 - [ ] (P14) Publicar a função `conteudo-extra-pedir` junto com as demais (`supabase functions deploy`).
+- [ ] (P6) Depois de cadastrar os segredos, abrir Configurações > Integrações e conferir que cada integração aparece "Conectada".
