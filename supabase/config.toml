@@ -101,3 +101,15 @@ import_map = "./functions/import_map.json"
 [functions.audiencia-print]
 verify_jwt = true
 import_map = "./functions/import_map.json"
+
+[functions.atendente-ciclo]
+verify_jwt = false
+import_map = "./functions/import_map.json"
+
+[functions.atendente-responder]
+verify_jwt = true
+import_map = "./functions/import_map.json"
+
+[functions.fale]
+verify_jwt = false
+import_map = "./functions/import_map.json"

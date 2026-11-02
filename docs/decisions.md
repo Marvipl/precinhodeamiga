@@ -193,3 +193,17 @@ Cada linha diz o que foi decidido e onde está no código. Quando o dono confirm
 | A7 | Um registro por canal e dia | Salvar de novo no mesmo dia corrige o número | migração `20261102190000_audiencia.sql` |
 | A8 | View `audiencia_semanas` | Contrato com Resultados: canal, semana_inicio (segunda), seguidores_inicio (último total antes da semana; no Telegram, se não houver, o primeiro da semana), seguidores_fim, saidas (Telegram pelos eventos; WhatsApp null) | migração `20261102190000_audiencia.sql` |
 | A9 | Webhook único do Telegram | `telegram-webhook` roteia por tipo em `_shared/telegram-webhook/tratadores.ts` (Audiência: `chat_member`; Atendente acrescenta `message` e `callback_query`) | `_shared/telegram-webhook/` |
+## Atendente e pedidos das amigas (P13, 02/11/2026)
+
+| # | Suposição | Valor usado | Onde |
+|---|---|---|---|
+| S28 | Resposta automática por palavra-chave (nível 1) | Só em mensagem de até 160 caracteres; nível 4 por palavra-chave vence | `core/atendente/niveis.ts` |
+| S29 | Textos fixos do nível 1 | Sugeridos no código; só saem sozinhos depois que a Lana aprova o texto ou aprova 3 vezes sem editar | `core/atendente/niveis.ts`, `atendente_categorias` |
+| S30 | Nível 2 sai sozinho | Tema ligado + trecho citado aparece no anúncio + todo número da resposta está no anúncio + sem alerta; só no bot (formulário sempre passa pela Lana) | `core/atendente/regras.ts` |
+| S31 | Duração do bloco de revisão (para o silêncio) | 60 minutos a partir do horário | `core/atendente/regras.ts` |
+| S32 | Aviso de recebimento | Uma vez por pessoa por bloco de revisão | `core/atendente/regras.ts` |
+| S33 | Pedidos iguais | Chave normalizada (sem preço, plural, ordem e palavras de pedido); 2 pessoas diferentes = achado a pedido (`pedidos_produto.achado_a_pedido`); a curadoria põe na fila | `core/atendente/regras.ts` |
+| S34 | Links nas respostas | Rascunho usa `{link:<produto_id>}`; o código troca pelo link com `sub1=at` e acrescenta o aviso de comissão. O link vem do gerador do pacote de posts com subIDs `at`/mensagem/data/`pedido`; sem as chaves da Shopee, link fictício | `_shared/atendente/links.ts` |
+| S35 | Formulário com resposta "pelo canal" | Não há resposta individual: o pedido vira achado a pedido | `_shared/atendente/servico.ts` |
+| S36 | Exclusão a pedido | Na hora (bot `/apagar` com confirmação; formulário por link com código de uso único) | `_shared/atendente/` |
+| S37 | Webhook do Telegram | Um só (`telegram-webhook`), roteado por tipo de update em `_shared/telegram-webhook/tratadores.ts` | combinado com o pacote da Audiência |
