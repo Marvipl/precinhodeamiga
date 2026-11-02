@@ -127,6 +127,12 @@ begin
     set texto = null, rascunho = null, resposta_final = null, trecho_citado = null
     where m.contato_id in (select id from vencidos)
     returning m.id
+  ), duv as (
+    -- dúvidas registradas para o post de respostas (tabela do pacote de crescimento): some o texto, fica o tema
+    update duvidas_registradas d
+    set pergunta = ''
+    where d.contato_ref in (select id::text from vencidos)
+    returning d.id
   ), peds as (
     update pedidos_produto p
     set texto = 'texto apagado pelo prazo de guarda'

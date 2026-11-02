@@ -424,6 +424,16 @@ export async function aplicarSaidaCiclo(deps: DepsAtendente, jobId: string, entr
     rascunhos++;
   }
 
+  // Dúvidas classificadas por tema, para "3 pessoas com a mesma dúvida na semana" (tabela do pacote de crescimento).
+  for (const e of entrada.mensagens) {
+    const s = porId.get(e.id);
+    if (!s?.tema_duvida || s.nivel === 4) continue;
+    const c = await db.from('atendente_mensagens').select('contato_id').eq('id', e.id).maybeSingle();
+    if (c.error || !c.data) continue;
+    const r = await db.from('duvidas_registradas').insert({ tema: s.tema_duvida.trim(), contato_ref: c.data.contato_id, pergunta: e.texto.slice(0, 300), mensagem_id: e.id });
+    if (r.error) console.error('duvidas_registradas', r.error.message);
+  }
+
   // Rascunhos de resposta para pedidos que já têm opções.
   for (const p of saida.pedidos) {
     const ref = entrada.pedidos_com_opcoes.find((x) => x.pedido_id === p.pedido_id);
@@ -605,6 +615,8 @@ export async function executarAcao(deps: DepsAtendente, a: AcaoResposta, userId:
 // ---------------------------------------------------------------------------
 export async function apagarContato(db: SupabaseClient, contatoId: string): Promise<void> {
   // pedidos_produto e atendente_mensagens caem em cascata pela chave estrangeira.
+  const d = await db.from('duvidas_registradas').delete().eq('contato_ref', contatoId);
+  if (d.error) console.error('duvidas_registradas', d.error.message);
   erro(await db.from('contatos').delete().eq('id', contatoId));
   await atividade(db, 'Um seguidor pediu a exclusão dos próprios dados: mensagens, pedidos e contato apagados');
 }
