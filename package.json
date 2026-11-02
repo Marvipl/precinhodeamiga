@@ -11,7 +11,9 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "check": "npm run typecheck && npm run test && npm run check:funcoes && vite build",
-    "check:funcoes": "deno check --config supabase/functions/deno.json supabase/functions/*/index.ts"
+    "check:funcoes": "deno check --config supabase/functions/deno.json supabase/functions/*/index.ts",
+    "agentes:gerar": "node scripts/gerar-agentes.ts",
+    "agentes:avaliar": "node scripts/avaliar-agentes.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.118.0",
@@ -33,6 +35,7 @@
     "jsdom": "^25.0.1",
     "typescript": "^5.9.3",
     "vite": "^6.4.5",
-    "vitest": "^3.2.7"
+    "vitest": "^3.2.7",
+    "zod-to-json-schema": "^3.25.2"
   }
 }

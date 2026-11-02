@@ -68,3 +68,6 @@ Ordem sugerida: do item 1 ao 9. Nenhuma chave entra no repositório.
 - [ ] (P7 Notificações) Ligar os envios de verdade com `supabase secrets set NOTIFICACOES_MODO=real` (sem isso a função `notificar` só simula e registra).
 - [ ] (P7 Notificações) Alternativa pelo Telegram: a Lana manda qualquer mensagem ao bot e o Marcus guarda o id do chat dela em `TELEGRAM_LANA_CHAT_ID` (dá para ver em `https://api.telegram.org/bot<token>/getUpdates`).
 - [ ] (P7 Notificações) No celular da Lana: instalar o app na tela inicial (obrigatório no iPhone) e tocar em "Ativar notificações neste aparelho" em Configurações; depois "Enviar notificação de teste".
+- [ ] (P8) Criar o repositório privado `precinho-agentes` no GitHub, rodar `npm run agentes:gerar -- <clone do precinho-agentes>` e fazer o commit; repetir sempre que um contrato ou instrução mudar. A instrução fixa de cada rotina está em `ROTINAS.md` da pasta gerada.
+- [ ] (P8) Ao criar o ambiente de nuvem das rotinas, conferir como o segredo de rede entrega o `AGENT_CALLBACK_TOKEN` (variável de ambiente ou cabeçalho injetado); o script `scripts/enviar-resultado.mjs` aceita os dois.
+- [ ] (P8) Antes de trocar instrução ou modelo das rotinas: rodar as rotinas com as entradas de `agentes/avaliacoes/`, salvar as saídas em `<pasta>/<contrato>/<caso>.json` e rodar `npm run agentes:avaliar -- --respostas <pasta>`.
