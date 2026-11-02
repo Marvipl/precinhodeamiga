@@ -122,3 +122,24 @@ export function useMarcarTarefa(hoje: string, userId: string | undefined) {
     ok(await sb.from('roteiro_marcas').upsert({ data: hoje, tarefa, feita, marcado_por: userId, marcado_em: new Date().toISOString() }));
   }, [CHAVE_MARCAS(hoje)]);
 }
+
+export interface PlanoParaRoteiro {
+  marcas: Array<{ tarefa: string; feita: boolean }>;
+  prioridades: string[];
+}
+
+/** Marcas do plano e prioridades da última revisão da Coach (P12), para a tarefa da semana. */
+export function usePlanoParaRoteiro() {
+  return useConsulta<PlanoParaRoteiro>(
+    ['plano', 'roteiro'],
+    async (sb) => {
+      const [marcas, rev] = await Promise.all([
+        sb.from('plano_marcas').select('tarefa, feita'),
+        sb.from('plano_revisoes').select('prioridades').order('semana', { ascending: false }).limit(1).maybeSingle(),
+      ]);
+      const prioridades = ((ok(rev) as { prioridades?: Array<{ tarefa_id: string }> } | null)?.prioridades ?? []).map((p) => p.tarefa_id);
+      return { marcas: lista(marcas), prioridades };
+    },
+    { marcas: [], prioridades: [] },
+  );
+}

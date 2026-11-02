@@ -11,7 +11,8 @@ import { Icone, type NomeIcone } from '@/components/Icone';
 import { useToast } from '@/components/Toast';
 import { useAuth } from '@/lib/auth';
 import { useConfig } from '@/lib/config';
-import { useAtividadesDesdeMeiaNoite, useDatasPico, useMarcarTarefa, useMarcasRoteiro, useResumoDia } from './dados';
+import { tarefaDaSemana, tarefasFeitas, textoTarefa } from '@core/coach/plano.ts';
+import { useAtividadesDesdeMeiaNoite, useDatasPico, useMarcarTarefa, useMarcasRoteiro, usePlanoParaRoteiro, useResumoDia } from './dados';
 import { inicioDoMes, useSessoesOperadoraMes } from './sessoes';
 import { RegistroDeTempo } from './Sessoes';
 import './hoje.css';
@@ -63,6 +64,7 @@ export default function Pagina() {
   const { data: feed = [], isLoading: carregandoFeed } = useAtividadesDesdeMeiaNoite(hoje);
   const { data: marcas = {} } = useMarcasRoteiro(hoje);
   const { data: sessoesOp = [] } = useSessoesOperadoraMes();
+  const { data: planoRoteiro } = usePlanoParaRoteiro();
   const marcar = useMarcarTarefa(hoje, perfil?.user_id);
   const [orcamento, setOrcamento] = useState<Orcamento>(ORCAMENTO_PADRAO);
   const [marcasLocais, setMarcasLocais] = useState<Record<string, boolean>>({});
@@ -72,6 +74,11 @@ export default function Pagina() {
   const datas = datasQueMovemVendas(picos, inicioPlano, hoje);
   const proximosPicos = datas.filter((d) => d.tipo === 'pico');
   const r = resumo;
+  const tarefaPlano = useMemo(() => {
+    if (dia.dia === null || !planoRoteiro) return null;
+    const t = tarefaDaSemana(dia.dia, tarefasFeitas(planoRoteiro.marcas), planoRoteiro.prioridades);
+    return t ? { titulo: textoTarefa(t, inicioPlano) } : null;
+  }, [dia.dia, planoRoteiro, inicioPlano]);
 
   const roteiro = useMemo(
     () =>
@@ -81,10 +88,11 @@ export default function Pagina() {
           ofertasPendentes: r?.ofertasPendentes ?? 0,
           enviosWhatsappPendentes: r?.enviosWhatsappPendentes ?? 0,
           artesStatus: r?.artesStatus ?? 0,
+          tarefaDaSemana: tarefaPlano,
         }),
         orcamento,
       ),
-    [r, hoje, orcamento],
+    [r, hoje, orcamento, tarefaPlano],
   );
   const feitas = { ...marcas, ...marcasLocais };
 

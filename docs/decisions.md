@@ -95,7 +95,7 @@ Cada linha diz o que foi decidido e onde está no código. Quando o dono confirm
 |---|---|---|
 | Fases com outra data de início | As fases do mock seguem os mesmos números de dia: preparação 1 a 7, temporada 8 a 42, Natal e ajustes 43 a 60, escala 61 a 90 | `core/plano/index.ts` |
 | Datas que movem vendas | Datas de pico (`datas_pico`) e gates do dia 30 e 90, a partir de hoje, até 4 itens; a nova leitura do dia 60 fica só em Resultados | `core/plano/index.ts` |
-| Telas do roteiro na V1 | `TELAS_PRONTAS = ['ofertas', 'publicar']`; cada pacote que entrega Radar, Audiência, Comunidade ou Plano acrescenta a tela ali e passa a contagem do objeto em `tarefasDoDia` | `core/roteiro.ts`, `src/pages/hoje/index.tsx` |
+| Telas do roteiro na V1 | `TELAS_PRONTAS = ['ofertas', 'publicar', 'plano']` (a tarefa da semana vem de `tarefaDaSemana` do P12); cada pacote que entrega Radar, Audiência ou Comunidade acrescenta a tela ali e passa a contagem do objeto em `tarefasDoDia` | `core/roteiro.ts`, `src/pages/hoje/index.tsx` |
 | Tarefas marcadas | Continuam no roteiro, riscadas, e contam no tempo (como no mock); a marcação vai para `roteiro_marcas` | `core/roteiro.ts` |
 | Último uso da sessão | Gravado no máximo a cada 5 minutos quando a pessoa toca ou digita no painel | `src/lib/atividade.ts` |
 | Fechamento automático | `fechar_sessoes_inativas()` a cada 10 min pelo pg_cron; fecha no último uso, marca `fechada_automaticamente` e a tela pede confirmação até `confirmada_em` | migração `20261102140000_registro_tempo.sql` |

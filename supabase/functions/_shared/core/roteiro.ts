@@ -13,7 +13,7 @@ export const ORCAMENTO_PADRAO: Orcamento = 20;
  * Telas que já existem no painel. Na V1, só entram no roteiro tarefas destas telas (seção 3, "Como a V1 funciona").
  * Cada pacote que entrega uma tela de destino acrescenta o nome aqui (uma linha).
  */
-export const TELAS_PRONTAS: readonly Tela[] = ['ofertas', 'publicar'];
+export const TELAS_PRONTAS: readonly Tela[] = ['ofertas', 'publicar', 'plano'];
 
 export type IdTarefa =
   | 'aprovar_ofertas'

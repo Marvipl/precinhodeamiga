@@ -30,7 +30,7 @@ describe('tela Hoje (modo local)', () => {
     expect(await screen.findByText(/Seu dia já está montado/)).toBeTruthy();
     expect(screen.getByText(/de 90|plano de 90 dias concluído|o plano começa/)).toBeTruthy();
     expect(screen.getByText('Seu roteiro de hoje')).toBeTruthy();
-    expect(await screen.findByText('Nada pendente agora')).toBeTruthy();
+    expect(await screen.findByText(/min de 20 disponíveis/)).toBeTruthy();
     expect(screen.getAllByText(/aguardando dados/).length).toBe(3);
     expect(screen.getByText('a partir do 1º registro de tempo')).toBeTruthy();
     expect(screen.getByText('Os agentes ainda não rodaram hoje.')).toBeTruthy();
@@ -42,7 +42,7 @@ describe('tela Hoje (modo local)', () => {
     const b40 = await screen.findByRole('button', { name: '40 min' });
     fireEvent.click(b40);
     expect(b40.getAttribute('aria-pressed')).toBe('true');
-    expect(screen.getByText(/0 min de 40 disponíveis/)).toBeTruthy();
+    expect(screen.getByText(/min de 40 disponíveis/)).toBeTruthy();
     fireEvent.click(screen.getByRole('button', { name: 'Lançar tempo manualmente' }));
     expect(screen.getByRole('form', { name: 'Lançar sessão' })).toBeTruthy();
   });

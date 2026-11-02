@@ -120,7 +120,7 @@ describe('roteiro (seção 5.14)', () => {
   });
   it('V1: só tarefas de telas que já existem', () => {
     const ids = tarefasDoDia({ ...TUDO, telasProntas: undefined }).map((t) => t.id);
-    expect(ids).toEqual(['aprovar_ofertas', 'enviar_bloco_wa', 'status_wa']);
+    expect(ids).toEqual(['aprovar_ofertas', 'enviar_bloco_wa', 'status_wa', 'tarefa_semana']);
   });
   it('tarefas sem objeto no dia não aparecem', () => {
     const ids = tarefasDoDia({
