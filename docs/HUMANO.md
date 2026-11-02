@@ -63,3 +63,4 @@ Ordem sugerida: do item 1 ao 9. Nenhuma chave entra no repositório.
 ## Itens acrescentados pelos pacotes
 <!-- Cada pacote acrescenta aqui o que só o dono pode fazer, com uma linha por item. -->
 - [ ] (P6) Depois de cadastrar os segredos, abrir Configurações > Integrações e conferir que cada integração aparece "Conectada".
+- [ ] P12: publicar a função `coach-semanal` e, com `AGENTES_MODO=real`, conferir na primeira segunda-feira (06:23) que a revisão da Coach aparece na aba Plano de 90 dias.
