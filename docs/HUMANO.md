@@ -89,3 +89,8 @@ Ordem sugerida: do item 1 ao 9. Nenhuma chave entra no repositório.
 - [ ] (P10 Audiência) Pôr o bot do Telegram como administrador do canal; sem isso ele não recebe as entradas e saídas (`chat_member`) nem consegue contar os inscritos.
 - [ ] (P10 Audiência) Registrar o webhook do bot apontando para a função `telegram-webhook`, com `secret_token` igual a `TELEGRAM_WEBHOOK_SECRET` e `allowed_updates` incluindo `chat_member` (além de `message` e `callback_query` da Atendente).
 - [ ] (P10 Audiência) Ligar as rotinas reais (`AGENTES_MODO=real` e `ROUTINE_ANALISTA_ID`/`_TOKEN`) para a leitura de print; até lá o print volta "sem número" e a Lana digita o total.
+- [ ] (Atendente) Registrar o webhook do bot: `https://api.telegram.org/bot<TOKEN>/setWebhook?url=https://<ref>.supabase.co/functions/v1/telegram-webhook&secret_token=<TELEGRAM_WEBHOOK_SECRET>&allowed_updates=["message","callback_query","chat_member","my_chat_member"]`.
+- [ ] (Atendente) No BotFather, cadastrar os comandos `/start`, `/menu`, `/privacidade` e `/apagar`.
+- [ ] (Atendente) A Lana revisa os textos fixos do nível 1 na tela Comunidade e toca em "Aprovar texto" nos que concordar (antes disso eles viram rascunho).
+- [ ] (Atendente) Fixar o link `<site>/fale` na descrição dos dois canais.
+- [ ] (Atendente) Revisão jurídica dos avisos de privacidade do bot e do formulário (`supabase/functions/_shared/core/atendente/privacidade.ts`).

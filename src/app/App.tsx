@@ -6,6 +6,7 @@ import { Layout } from '@/components/Layout';
 import { SpriteIcones } from '@/components/Icone';
 import { ToastProvider } from '@/components/Toast';
 import Entrar from '@/pages/entrar';
+import Fale from '@/pages/fale';
 import { ABAS, PAGINA_CONFIGURACOES as Configuracoes } from './rotas';
 
 // Telas públicas (seção 4.3), fora do login.
@@ -42,6 +43,8 @@ export function App() {
             <Suspense fallback={<p className="carregando">Carregando...</p>}>
               <Routes>
                 <Route path="/entrar" element={<EntradaPublica />} />
+                {/* Telas públicas, fora do login (seção 4.3). */}
+                <Route path="/fale" element={<Fale />} />
                 <Route path="*" element={<Portao />} />
               </Routes>
             </Suspense>
