@@ -27,9 +27,9 @@ import {
   respondeSozinha,
   rotuloCiclo,
   rotuloProximoBloco,
-  linkConversaWhatsapp,
   type EstadoCategoria,
 } from '../core/atendente/regras.ts';
+import { linkConversaWhatsapp } from '../core/atendente/whatsapp-conversa.ts';
 import type { EntradaAtendente, SaidaAtendente } from '../core/contratos/atendente.ts';
 import type { Bot } from './bot.ts';
 import type { GeradorLinks } from './links.ts';

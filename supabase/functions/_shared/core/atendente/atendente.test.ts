@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { triar, preencher, CATEGORIAS_FECHADAS, TEXTOS_NIVEL1, MENU_BOT } from './niveis.ts';
 import {
@@ -10,7 +11,6 @@ import {
   duvidasRepetidas,
   emJanelaDeCiclo,
   gruposAchadoAPedido,
-  linkConversaWhatsapp,
   montarResposta,
   proximoBloco,
   proximoCiclo,
@@ -22,6 +22,7 @@ import {
   celularValido,
 } from './regras.ts';
 import { formularioFale } from './formulario.ts';
+import { linkConversaWhatsapp } from './whatsapp-conversa.ts';
 import { atendente } from '../contratos/atendente.ts';
 import { contrato } from '../contratos/index.ts';
 
@@ -215,7 +216,10 @@ describe('privacidade e formulário', () => {
     expect(vencidoParaGuarda(new Date(agora.getTime() - 89 * 86_400_000), agora)).toBe(false);
   });
   it('resposta por WhatsApp só abre a conversa com o texto; nada é enviado', () => {
-    expect(linkConversaWhatsapp('(11) 90000-0000', 'Oi')).toBe('https://wa.me/5511900000000?text=Oi');
+    expect(linkConversaWhatsapp('(11) 90000-0000', 'Oi')).toMatch(/\/5511900000000\?text=Oi$/);
+    // O arquivo liberado na regra 5.1 item 2 só monta o link: nenhuma chamada de rede.
+    const fonte = readFileSync(new URL('./whatsapp-conversa.ts', import.meta.url), 'utf8');
+    expect(fonte).not.toMatch(/fetch|XMLHttpRequest|Deno\.|import /);
     expect(celularValido('11 90000-0000')).toBe(true);
     expect(celularValido('123')).toBe(false);
   });

@@ -289,13 +289,6 @@ export function vencidoParaGuarda(ultimaInteracao: string | Date, agora: Date): 
   return agora.getTime() - t > GUARDA_DIAS * 86_400_000;
 }
 
-/** Link de conversa do WhatsApp com o texto preenchido. A Lana toca em enviar; nada sai sozinho. */
-export function linkConversaWhatsapp(numero: string, texto: string): string {
-  const digitos = numero.replace(/\D/g, '');
-  const comPais = digitos.length <= 11 ? `55${digitos}` : digitos;
-  return `https://wa.me/${comPais}?text=${encodeURIComponent(texto)}`;
-}
-
 /** Número de celular brasileiro plausível (DDD + 8 ou 9 dígitos, com ou sem 55). */
 export function celularValido(numero: string): boolean {
   const d = numero.replace(/\D/g, '');

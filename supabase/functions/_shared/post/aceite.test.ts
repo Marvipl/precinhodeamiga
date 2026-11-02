@@ -75,6 +75,8 @@ describe('5.1 item 2: não existe caminho de código que envie mensagem ao Whats
     const proibido = /graph\.facebook\.com|api\.whatsapp\.com|wa\.me\/|whatsapp\.com\/send|web\.whatsapp\.com|whatsapp-web|baileys|venom-bot|wppconnect/i;
     const achados = [...arquivos(join(RAIZ, 'supabase')), ...arquivos(join(RAIZ, 'src'))]
       .filter((f) => !f.endsWith('aceite.test.ts'))
+      // Exceção da seção 5.13: link de conversa 1:1 que a Lana abre e ela mesma envia (nenhuma chamada de envio).
+      .filter((f) => !f.endsWith(join('core', 'atendente', 'whatsapp-conversa.ts')))
       .filter((f) => proibido.test(readFileSync(f, 'utf8')))
       .map((f) => relative(RAIZ, f));
     expect(achados).toEqual([]);
