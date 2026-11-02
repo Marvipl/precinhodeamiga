@@ -3,6 +3,12 @@
 Tudo aqui fica para o final. Enquanto isso, a plataforma roda em modo local (painel) e modo simulado (agentes).
 Ordem sugerida: do item 1 ao 9. Nenhuma chave entra no repositório.
 
+## Caminho fácil: publicação automática pelo GitHub
+O workflow "Publicar no Supabase" (`.github/workflows/publicar-supabase.yml`) faz sozinho, a cada mudança em `supabase/` no `main` ou quando você roda pela aba Actions: aplica as migrações, publica todas as funções, grava `project_url` e `service_role_key` no Vault, desliga o cadastro aberto, copia os segredos do GitHub para as funções, gera `AGENT_CALLBACK_TOKEN` e as chaves VAPID (só na primeira vez; a pública aparece no resumo da execução), registra o webhook do Telegram e os comandos do bot. Rodando pela aba Actions, com os e-mails preenchidos, também libera os acessos e envia os convites.
+- [ ] Em Settings > Secrets and variables > Actions > Secrets: `SUPABASE_ACCESS_TOKEN` (supabase.com/dashboard/account/tokens), `SUPABASE_PROJECT_REF` e `SUPABASE_DB_PASSWORD`.
+- [ ] Os demais segredos (`SHOPEE_*`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHANNEL_ID`, `TELEGRAM_LANA_CHAT_ID`, `ROUTINE_*`) vão no mesmo lugar; as variáveis (`PUBLIC_SITE_URL`, `AGENTES_MODO`, `NOTIFICACOES_MODO`, `VAPID_SUBJECT`) na aba Variables.
+- Com isso, os comandos `supabase ...` dos itens abaixo deixam de ser necessários.
+
 ## 1. Shopee Afiliados (primeiro, porque demora)
 - [ ] A Lana pede a liberação da API aberta (Open API) no painel de afiliados.
 - [ ] Guardar `SHOPEE_AFFILIATE_APP_ID` e `SHOPEE_AFFILIATE_APP_SECRET` como segredos das Edge Functions.

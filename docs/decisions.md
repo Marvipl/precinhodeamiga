@@ -207,3 +207,4 @@ Cada linha diz o que foi decidido e onde está no código. Quando o dono confirm
 | S35 | Formulário com resposta "pelo canal" | Não há resposta individual: o pedido vira achado a pedido | `_shared/atendente/servico.ts` |
 | S36 | Exclusão a pedido | Na hora (bot `/apagar` com confirmação; formulário por link com código de uso único) | `_shared/atendente/` |
 | S37 | Webhook do Telegram | Um só (`telegram-webhook`), roteado por tipo de update em `_shared/telegram-webhook/tratadores.ts` | combinado com o pacote da Audiência |
+| S38 | Publicação no Supabase | Workflow do GitHub com a CLI e a Management API; segredos ficam no GitHub e são copiados para as funções. `AGENT_CALLBACK_TOKEN`, VAPID e `TELEGRAM_WEBHOOK_SECRET` são gerados no próprio workflow e nunca passam pelo chat; não são regenerados se já existem. `PUBLIC_SITE_URL` também alimenta `SITE_URL` | `scripts/publicar/`, `.github/workflows/publicar-supabase.yml` |
