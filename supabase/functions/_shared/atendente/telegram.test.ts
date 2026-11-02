@@ -14,14 +14,14 @@ describe('webhook do Telegram', () => {
     expect(tipoDoUpdate({ update_id: 1, message: { text: 'oi' } })).toBe('message');
     expect(tipoDoUpdate({ update_id: 1, callback_query: { id: 'x' } })).toBe('callback_query');
     expect(tipoDoUpdate({ update_id: 1, chat_member: {} })).toBe('chat_member');
-    expect(tipoDoUpdate({ update_id: 1 })).toBe('outro');
+    expect(tipoDoUpdate({ update_id: 1 })).toBeNull();
   });
   it('a Atendente atende message e callback_query', () => {
     expect(TRATADORES.message).toBeTypeOf('function');
     expect(TRATADORES.callback_query).toBeTypeOf('function');
   });
   it('tipo sem tratador não faz nada', async () => {
-    expect(await rotear({ update_id: 1, edited_message: {} }, { db: semBanco, env: () => undefined }, {})).toBe('outro');
+    expect(await rotear({ update_id: 1, edited_message: {} }, { db: semBanco, env: () => undefined }, {})).toEqual({ tipo: null, tratado: false });
   });
 });
 
