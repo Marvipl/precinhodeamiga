@@ -4,9 +4,11 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 import type { Processador } from '../jobs/runtime.ts';
 import { processarPing } from './ping.ts';
+import { processarCoach } from './coach.ts';
 
 export function processadoresPara(db: SupabaseClient): Record<string, Processador> {
   return {
     'ping/v1': processarPing(db),
+    'coach/v1': processarCoach(db),
   };
 }

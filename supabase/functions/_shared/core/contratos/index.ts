@@ -9,6 +9,7 @@
 import type { z } from 'zod';
 import type { IdRotina } from '../agentes.ts';
 import { ping } from './ping.ts';
+import { coach } from './coach.ts';
 
 export interface Contrato<E = unknown, S = unknown> {
   id: string; // ex.: 'curadoria/v1'
@@ -21,7 +22,7 @@ export interface Contrato<E = unknown, S = unknown> {
 }
 
 // deno-lint-ignore no-explicit-any
-export const CONTRATOS: Contrato<any, any>[] = [ping];
+export const CONTRATOS: Contrato<any, any>[] = [ping, coach];
 
 export function contrato(id: string): Contrato | undefined {
   return CONTRATOS.find((c) => c.id === id);
