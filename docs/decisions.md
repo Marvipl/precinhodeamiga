@@ -87,3 +87,18 @@ Cada linha diz o que foi decidido e onde está no código. Quando o dono confirm
 | Resultados enviados à Coach | Horas registradas da semana anterior sem montagem; comissão fica `null` até existir a importação de conversões (P11) | `_shared/coach/semanal.ts` |
 | Ajuste do roteiro | `tarefaDaSemana()` devolve a primeira prioridade pendente da última revisão, ou a primeira tarefa pendente da Lana; o roteiro do dia (P5) usa esta função para a "Tarefa da semana do plano" | `core/coach/plano.ts` |
 | Pedir revisão na hora | Só o dono, pela tela do Plano; respeita a chave única da semana e o teto diário da rotina | `coach-semanal` |
+
+
+## P5 Hoje, roteiro e registro de tempo
+
+| Tema | Decisão | Onde |
+|---|---|---|
+| Fases com outra data de início | As fases do mock seguem os mesmos números de dia: preparação 1 a 7, temporada 8 a 42, Natal e ajustes 43 a 60, escala 61 a 90 | `core/plano/index.ts` |
+| Datas que movem vendas | Datas de pico (`datas_pico`) e gates do dia 30 e 90, a partir de hoje, até 4 itens; a nova leitura do dia 60 fica só em Resultados | `core/plano/index.ts` |
+| Telas do roteiro na V1 | `TELAS_PRONTAS = ['ofertas', 'publicar']`; cada pacote que entrega Radar, Audiência, Comunidade ou Plano acrescenta a tela ali e passa a contagem do objeto em `tarefasDoDia` | `core/roteiro.ts`, `src/pages/hoje/index.tsx` |
+| Tarefas marcadas | Continuam no roteiro, riscadas, e contam no tempo (como no mock); a marcação vai para `roteiro_marcas` | `core/roteiro.ts` |
+| Último uso da sessão | Gravado no máximo a cada 5 minutos quando a pessoa toca ou digita no painel | `src/lib/atividade.ts` |
+| Fechamento automático | `fechar_sessoes_inativas()` a cada 10 min pelo pg_cron; fecha no último uso, marca `fechada_automaticamente` e a tela pede confirmação até `confirmada_em` | migração `20261102140000_registro_tempo.sql` |
+| Lançamento manual | Fim antes do início vira o dia seguinte; no máximo 16 horas; sem sobrepor outra sessão própria; sem horário no futuro | `core/tempo.ts` |
+| Horas da comissão por hora | Soma das sessões da operadora no mês, sem montagem; o dono vê as horas da Lana | `src/pages/hoje/sessoes.ts` |
+| Uma sessão aberta por pessoa | Índice único parcial no banco | migração `20261102140000_registro_tempo.sql` |

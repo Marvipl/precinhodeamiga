@@ -1,0 +1,20 @@
+/* Tela Hoje (P5): só o que o mock não tem. */
+.hoje-fase{margin-left:8px; vertical-align:middle}
+.hoje-vazio{margin-top:14px}
+.task label.t{display:block; cursor:pointer}
+.hoje-aviso{flex-wrap:wrap; justify-content:space-between; margin-bottom:12px}
+.hoje-acoes{display:flex; flex-wrap:wrap; gap:8px}
+.hoje-sessao{display:flex; flex-wrap:wrap; align-items:center; gap:12px; justify-content:space-between; padding:12px 14px; border:1px solid var(--line); border-radius:var(--r-md)}
+.hoje-sessao > div:first-child{flex:1 1 180px; min-width:0}
+.hoje-sessao-t{font-weight:800}
+.hoje-check{display:inline-flex; align-items:center; gap:8px; min-height:44px; font-size:14px; font-weight:700; cursor:pointer}
+.hoje-check input{width:20px; height:20px; accent-color:var(--primary)}
+.hoje-total{margin:10px 0 12px}
+.hoje-form{display:flex; flex-direction:column; gap:12px; padding:14px; border:1px solid var(--line); border-radius:var(--r-md); background:var(--surface-2)}
+.hoje-form-linha{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px}
+.hoje-form .field span{font-size:13px; font-weight:800; color:var(--muted)}
+.hoje-sub{margin:18px 0 8px; font-size:15px}
+.hoje-sessoes .txt b{margin-right:4px}
+@media (max-width:520px){
+  .hoje-form-linha{grid-template-columns:minmax(0,1fr)}
+}

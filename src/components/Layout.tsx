@@ -8,6 +8,7 @@ import { dataLocal } from '@core/formato.ts';
 import { ok, useConsulta } from '@/lib/dados';
 import { Icone } from './Icone';
 import { Equipe } from './Equipe';
+import { useRegistrarAtividade } from '@/lib/atividade';
 
 function usePendentesHoje(): number {
   const { data = 0 } = useConsulta<number>(
@@ -26,6 +27,7 @@ function usePendentesHoje(): number {
 export function Layout() {
   const { perfil, sair } = useAuth();
   const pendentes = usePendentesHoje();
+  useRegistrarAtividade(perfil?.user_id);
   const { pathname } = useLocation();
   return (
     <div className="app">
