@@ -7,6 +7,8 @@ import { processarPing } from './ping.ts';
 import { processarRedacaoExtra } from './redacao-extra.ts';
 import { processarCoach } from './coach.ts';
 import { processarRadar } from './radar.ts';
+import { processarCuradoria } from './curadoria.ts';
+import { processarRedacao } from './redacao.ts';
 
 export function processadoresPara(db: SupabaseClient): Record<string, Processador> {
   return {
@@ -14,5 +16,7 @@ export function processadoresPara(db: SupabaseClient): Record<string, Processado
     'redacao-extra/v1': processarRedacaoExtra(db),
     'coach/v1': processarCoach(db),
     'radar/v1': processarRadar(db),
+    'curadoria/v1': processarCuradoria(db),
+    'redacao/v1': processarRedacao(db),
   };
 }

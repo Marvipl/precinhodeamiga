@@ -59,3 +59,7 @@ import_map = "./functions/import_map.json"
 [functions.radar-lembrete]
 verify_jwt = false
 import_map = "./functions/import_map.json"
+
+[functions.ofertas-acao]
+verify_jwt = true
+import_map = "./functions/import_map.json"

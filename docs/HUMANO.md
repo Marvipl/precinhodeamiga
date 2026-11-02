@@ -78,3 +78,4 @@ Ordem sugerida: do item 1 ao 9. Nenhuma chave entra no repositório.
 - [ ] (P9) Informar a região do Radar: salvar em `configuracoes` a chave `radar.regiao` (texto, ex.: cidade e região). Sem ela a busca semanal vai só pelos nichos.
 - [ ] (P9) Revisão jurídica do aviso de privacidade da página de entrada (`src/pages/entrada-publica/index.tsx`).
 - [ ] (P9) No primeiro disparo real do `pa-radar`, conferir se a busca na web funciona no ambiente com rede restrita (ponto 14 da seção 11).
+- [ ] (P2) Confirmar as suposições S-P2-1 a S-P2-7 de `docs/decisions.md` (fila de ofertas: opções por pedido, expiração da fila, outra versão).

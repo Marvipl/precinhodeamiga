@@ -1,0 +1,55 @@
+{
+  "contrato": "redacao/v1",
+  "descricao": "Outra versão da frase: uma resposta por pedido, até o limite, sem promessa, sem emoji e sem número fora da entrada.",
+  "casos": [
+    {
+      "nome": "outra-versao",
+      "entrada": {
+        "pedidos": [
+          {
+            "oferta_id": "00000000-0000-4000-8000-000000000001",
+            "tipo": "outra_versao",
+            "versao": 2,
+            "nome": "Produto de teste A",
+            "nicho": "Nicho de teste",
+            "preco_atual": 40,
+            "frase_atual": "Frase de teste anterior.",
+            "motivos": [
+              "Comissão Extra ativa"
+            ],
+            "frase_max": 140
+          }
+        ]
+      },
+      "criterios": [
+        {
+          "tipo": "minItens",
+          "campo": "textos",
+          "min": 1
+        },
+        {
+          "tipo": "maxItens",
+          "campo": "textos",
+          "max": 1
+        },
+        {
+          "tipo": "tamanhoMax",
+          "campo": "textos[].frase",
+          "max": 140
+        },
+        {
+          "tipo": "semPromessa",
+          "campo": "textos[].frase"
+        },
+        {
+          "tipo": "semEmoji",
+          "campo": "textos[].frase"
+        },
+        {
+          "tipo": "semNumeroInventado",
+          "campo": "textos[].frase"
+        }
+      ]
+    }
+  ]
+}
