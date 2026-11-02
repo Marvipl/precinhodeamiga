@@ -89,5 +89,15 @@ verify_jwt = false
 import_map = "./functions/import_map.json"
 
 [functions.arte-gerar]
+
+[functions.telegram-webhook]
+verify_jwt = false
+import_map = "./functions/import_map.json"
+
+[functions.audiencia-contagem-tg]
+verify_jwt = false
+import_map = "./functions/import_map.json"
+
+[functions.audiencia-print]
 verify_jwt = true
 import_map = "./functions/import_map.json"

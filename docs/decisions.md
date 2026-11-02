@@ -178,3 +178,18 @@ Cada linha diz o que foi decidido e onde está no código. Quando o dono confirm
 | Link de entrada do Status | `PUBLIC_SITE_URL` + `/entrar?o=status` | `core/arte/status.ts` |
 | Papel do dono na aba Publicar | Marcus vê tudo e pode cancelar post; criar post manual, marcar envio do WhatsApp e "Atualizar preço e publicar" ficam só com a Lana (nada público sem aprovação dela; S2) | `src/pages/publicar/` |
 | Chamadas às funções do P3 | `post-manual` {link_afiliado, titulo, preco_atual, preco_referencia, cupom, prazo, frase, canais}; `post-atualizar-preco` {post_id, preco_atual?} (obrigatório em post manual); cancelar é update direto em `post_envios` | `src/pages/publicar/dados.ts` |
+
+
+## Audiência (P10, 02/11/2026)
+
+| # | Decisão | Valor usado | Onde |
+|---|---|---|---|
+| A1 | Leitura de 48 horas por origem | Conta cliques do link de entrada (botão `pagina`) e entradas no Telegram na janela [divulgação, +48 h). O WhatsApp é semanal e não entra nessa leitura; a coluna diz "Novos no Telegram em 48 h" | `core/audiencia/index.ts` |
+| A2 | Leitura misturada | Duas divulgações de qualquer lugar a menos de 48 h uma da outra marcam as duas como misturadas; exatamente 48 h é limpa | `core/audiencia/index.ts` |
+| A3 | Novos e saídas da semana | Telegram: eventos dos últimos 7 dias (só se o bot já contou o canal). WhatsApp: diferença entre os dois últimos registros (alta = novos, queda = deixaram de seguir) | `core/audiencia/index.ts` |
+| A4 | Funil e engajamento | Últimos 7 dias. "Cliques em ofertas por seguidor" usa o total de seguidores dos dois canais. Posts na semana = envios publicados (Telegram) ou marcados como enviados (WhatsApp) | `core/audiencia/index.ts` |
+| A5 | Limite de leituras de print | 4 por semana (seção 8); passou disso, a Lana digita | `core/audiencia/index.ts`, `_shared/audiencia/print.ts` |
+| A6 | Contagem diária do Telegram | `getChatMemberCount` às 23:50 de Brasília; sem token não grava nada | migração `20261102190000_audiencia.sql` |
+| A7 | Um registro por canal e dia | Salvar de novo no mesmo dia corrige o número | migração `20261102190000_audiencia.sql` |
+| A8 | View `audiencia_semanas` | Contrato com Resultados: canal, semana_inicio (segunda), seguidores_inicio (último total antes da semana; no Telegram, se não houver, o primeiro da semana), seguidores_fim, saidas (Telegram pelos eventos; WhatsApp null) | migração `20261102190000_audiencia.sql` |
+| A9 | Webhook único do Telegram | `telegram-webhook` roteia por tipo em `_shared/telegram-webhook/tratadores.ts` (Audiência: `chat_member`; Atendente acrescenta `message` e `callback_query`) | `_shared/telegram-webhook/` |

@@ -10,6 +10,7 @@ import { processarRadar } from './radar.ts';
 import { processarCuradoria } from './curadoria.ts';
 import { processarRedacao } from './redacao.ts';
 import { processarAnalistaResumo } from './analista-resumo.ts';
+import { processarAnalistaPrint } from './analista-print.ts';
 
 export function processadoresPara(db: SupabaseClient): Record<string, Processador> {
   return {
@@ -20,5 +21,6 @@ export function processadoresPara(db: SupabaseClient): Record<string, Processado
     'curadoria/v1': processarCuradoria(db),
     'redacao/v1': processarRedacao(db),
     'analista-resumo/v1': processarAnalistaResumo(db),
+    'analista-print/v1': processarAnalistaPrint(db),
   };
 }
