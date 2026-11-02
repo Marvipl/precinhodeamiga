@@ -148,3 +148,17 @@ Cada linha diz o que foi decidido e onde está no código. Quando o dono confirm
 | P11-S9 | Dias de dados para o gráfico | Dias cobertos pelos períodos das importações bem-sucedidas; gráfico mostra os últimos 30 dias | `core/analista/indicadores.ts` |
 | P11-S10 | Audiência | Lida da view `audiencia_semanas` do pacote da Audiência (canal, semana_inicio, seguidores_inicio, seguidores_fim, saidas); ausente = "aguardando dados" | `_shared/analista/leitura.ts` |
 | P11-S11 | Metas de taxa em porcentagem | Digitadas em % e guardadas como fração | `src/pages/resultados/Cartoes.tsx` |
+
+## P3 Montagem do post, Guardiã e Agendadora (F-06, F-07, F-08, F-16)
+
+| # | Suposição | Valor usado | Onde |
+|---|---|---|---|
+| S-P3-1 | Prazo no post | "Oferta válida até 2/12 às 23:59" (data curta e hora de Brasília) | `core/post/formato.ts` |
+| S-P3-2 | subIDs | `sub2` = ID do post sem hífens; `sub4` aceita `manual` além de `rodada` e `pedido` | `core/post/links.ts` |
+| S-P3-3 | Telegram | Modo HTML do bot (`<b>` no nome); foto do produto com legenda até 1.024 caracteres, acima disso mensagem de texto | `core/post/formato.ts`, `_shared/telegram/cliente.ts` |
+| S-P3-4 | Post manual (F-16) | Um único link colado vale para os canais marcados; a Guardiã confere só que é link da Shopee com https e mostra alerta "confira o código do canal"; o "de" digitado só aparece com 7+ dias de histórico do mesmo item (achado pelo `-i.<loja>.<item>` do link) e sem passar do maior preço da janela | `_shared/post/servico.ts` |
+| S-P3-5 | Bloco já começado | Post aprovado com o bloco andando entra entre o último post que não pode mais mudar (+20 min) e o fim do bloco; sem espaço, vai para o próximo bloco ou dia (até 7 dias, se a oferta ainda valer) | `core/post/agenda.ts` |
+| S-P3-6 | Checagem antes do envio | Usa o último preço em `precos_observados` e `produtos.em_estoque` (a consulta sob demanda à Shopee entra quando o cliente da coleta estiver ligado); post manual sem produto conhecido só confere o prazo | `_shared/post/servico.ts` |
+| S-P3-7 | Falha do bot | Tenta de novo a cada minuto; depois de 30 minutos de atraso, pausa e avisa a Lana | `_shared/post/servico.ts` |
+| S-P3-8 | Quem aprova e publica | Só a operadora chama `post-aprovar`, `post-manual` e `post-atualizar-preco` (S2) | funções `post-*` |
+| S-P3-9 | Atualizar preço | Sem preço informado, usa o último observado; se o horário já passou, o envio volta para o minuto seguinte, já conferido | `_shared/post/servico.ts` |
