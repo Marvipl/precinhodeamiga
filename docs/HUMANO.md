@@ -73,3 +73,8 @@ Ordem sugerida: do item 1 ao 9. Nenhuma chave entra no repositório.
 - [ ] (P8) Criar o repositório privado `precinho-agentes` no GitHub, rodar `npm run agentes:gerar -- <clone do precinho-agentes>` e fazer o commit; repetir sempre que um contrato ou instrução mudar. A instrução fixa de cada rotina está em `ROTINAS.md` da pasta gerada.
 - [ ] (P8) Ao criar o ambiente de nuvem das rotinas, conferir como o segredo de rede entrega o `AGENT_CALLBACK_TOKEN` (variável de ambiente ou cabeçalho injetado); o script `scripts/enviar-resultado.mjs` aceita os dois.
 - [ ] (P8) Antes de trocar instrução ou modelo das rotinas: rodar as rotinas com as entradas de `agentes/avaliacoes/`, salvar as saídas em `<pasta>/<contrato>/<caso>.json` e rodar `npm run agentes:avaliar -- --respostas <pasta>`.
+- [ ] (P9) Preencher em Configurações os links dos canais (`canais.whatsapp_link` e `canais.telegram_link`, começando com `https://`); sem eles a página de entrada mostra "os canais ainda estão sendo preparados".
+- [ ] (P9) Definir a variável `SITE_URL` das Edge Functions com o endereço público do painel (ex.: o domínio do Netlify), para a página de entrada voltar ao lugar certo quando um canal não estiver configurado.
+- [ ] (P9) Informar a região do Radar: salvar em `configuracoes` a chave `radar.regiao` (texto, ex.: cidade e região). Sem ela a busca semanal vai só pelos nichos.
+- [ ] (P9) Revisão jurídica do aviso de privacidade da página de entrada (`src/pages/entrada-publica/index.tsx`).
+- [ ] (P9) No primeiro disparo real do `pa-radar`, conferir se a busca na web funciona no ambiente com rede restrita (ponto 14 da seção 11).

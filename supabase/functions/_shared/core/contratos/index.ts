@@ -11,6 +11,7 @@ import type { IdRotina } from '../agentes.ts';
 import { ping } from './ping.ts';
 import { redacaoExtra } from './redacao-extra.ts';
 import { coach } from './coach.ts';
+import { radar } from './radar.ts';
 
 export interface Contrato<E = unknown, S = unknown> {
   id: string; // ex.: 'curadoria/v1'
@@ -27,6 +28,7 @@ export const CONTRATOS: Contrato<any, any>[] = [
   ping,
   redacaoExtra,
   coach,
+  radar,
 ];
 
 export function contrato(id: string): Contrato | undefined {
