@@ -167,3 +167,14 @@ Cada linha diz o que foi decidido e onde está no código. Quando o dono confirm
 | S-P1-3 | API da Shopee | Endpoint `open-api.affiliate.shopee.com.br/graphql`, assinatura `SHA256(AppId + Timestamp + Payload + Secret)`, queries `productOfferV2` e `generateShortLink`; Comissão Extra = `sellerCommissionRate`; nota e avaliações da loja não vêm na busca (ficam vazias). Conferir tudo na seção Open API do painel antes de ligar o modo real | `_shared/shopee/real.ts`, `assinatura.ts` |
 | S-P1-4 | Janela da mediana | Mediana dos dias observados nos 30 dias anteriores a hoje (o preço de hoje é o atual e não entra); dias de histórico contam desde a primeira observação | `core/curadoria/historico.ts` |
 | S-P1-5 | Entrada da curadoria (com P2) | Esquema `entradaCuradoria` do contrato (`core/contratos/curadoria.ts`), alimentado por `montarCandidata` (`core/curadoria/candidata.ts`): até 30 candidatas, pedidos abertos de qualquer origem (até 20), nichos e pulos dos últimos 14 dias (até 50). | `_shared/coleta/servico.ts` |
+## Tela Publicar, artes e post manual (P4, 02/11/2026)
+
+| Tema | Decisão | Onde |
+|---|---|---|
+| Formato da arte | Modelo fixo em SVG 1080x1920 (9:16) com foto, nome, preço e "Siga o canal", nas cores do mock. A função grava o SVG no bucket privado `artes`; o painel converte para PNG na hora de baixar. Não usamos resvg na Edge Function porque ela não tem as fontes da marca; o navegador tem | `core/arte/modelo.ts`, `_shared/arte/gerar.ts`, `src/pages/publicar/png.ts` |
+| Quando as artes saem | Sob demanda: botão "Preparar artes do dia" na aba Publicar, porque as aprovações acontecem ao longo do dia. "Completar" acrescenta só as que faltam; "Refazer" regrava | função `arte-gerar` |
+| Quais ofertas viram arte | Ofertas aprovadas do dia, maiores notas primeiro, uma por produto, entre 3 e 5 (configuração `status.artes_por_dia`). Post manual não vira arte (não tem nota) | `core/arte/status.ts` |
+| Legenda do Status | "Achado do dia: [produto] por R$ [preço]. Esse e outros achados saem todo dia no canal. Siga: [link de entrada]". O código recusa qualquer domínio da Shopee na arte e na legenda (regra 5.1.4) | `core/arte/status.ts` |
+| Link de entrada do Status | `PUBLIC_SITE_URL` + `/entrar?o=status` | `core/arte/status.ts` |
+| Papel do dono na aba Publicar | Marcus vê tudo e pode cancelar post; criar post manual, marcar envio do WhatsApp e "Atualizar preço e publicar" ficam só com a Lana (nada público sem aprovação dela; S2) | `src/pages/publicar/` |
+| Chamadas às funções do P3 | `post-manual` {link_afiliado, titulo, preco_atual, preco_referencia, cupom, prazo, frase, canais}; `post-atualizar-preco` {post_id, preco_atual?} (obrigatório em post manual); cancelar é update direto em `post_envios` | `src/pages/publicar/dados.ts` |

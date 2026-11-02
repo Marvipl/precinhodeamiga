@@ -87,3 +87,7 @@ import_map = "./functions/import_map.json"
 [functions.coleta-shopee]
 verify_jwt = false
 import_map = "./functions/import_map.json"
+[functions.arte-gerar]
+verify_jwt = true
+import_map = "./functions/import_map.json"
+
