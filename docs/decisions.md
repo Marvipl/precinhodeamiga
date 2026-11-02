@@ -132,3 +132,19 @@ Cada linha diz o que foi decidido e onde está no código. Quando o dono confirm
 | S-P2-5 | Aprovar ou editar enquanto a Redatora escreve | Permitido; vale a frase atual e a nova versão é descartada ao chegar | `_shared/ofertas/acoes.ts` |
 | S-P2-6 | Prévia do post na fila | Formato 5.4 do WhatsApp com o link indicado por texto (o link real só existe na aprovação); troca pelo formatador do pacote de posts quando estiver no main | `core/ofertas/previa.ts` |
 | S-P2-7 | Motivos rápidos do pulo | Quatro sugestões e texto livre (até 200 caracteres); motivo continua opcional | `core/ofertas/fila.ts` |
+
+### P11 Resultados e Analista
+
+| # | Suposição | Valor usado | Onde |
+|---|---|---|---|
+| P11-S1 | Formato do CSV do relatório de conversões | Colunas reconhecidas por apelidos em português e inglês; obrigatórias: pedido, data, status e comissão total. Linhas repetidas do mesmo pedido e item são somadas | `core/analista/conversoes.ts` |
+| P11-S2 | Estados do relatório | Cancelado/inválido/não pago = cancelada; concluído/pago/validado = concluída; pendente/em processamento = pendente; estado desconhecido recusa a linha | `core/analista/conversoes.ts` |
+| P11-S3 | Data do pedido sem fuso | Hora de Brasília | `core/analista/conversoes.ts` |
+| P11-S4 | Importação diária pela API | Sem chave: não importa nada (nada de dado simulado no banco de produção). Com chave: registra "importação com erro" até a consulta do relatório ser ligada com a documentação da Open API | `_shared/analista/rotina.ts` |
+| P11-S5 | Coluna "Hoje" dos indicadores | Mês até hoje para comissões, cliques por oferta, ticket, mix e por 1.000; última semana fechada para conversão; última semana com dado para taxa de saída (maior entre os canais) | `core/analista/painel.ts` |
+| P11-S6 | "Sem alta" sem os números das duas semanas | Conta como sem alta | `core/analista/gates.ts` |
+| P11-S7 | Antes do dia do gate | Tela mostra leitura parcial até ontem; a decisão só pode ser registrada a partir da manhã do gate | `core/analista/painel.ts` |
+| P11-S8 | Gatilho de investimento por hora | Comissão líquida do mês ÷ horas de operação do mesmo mês, nos 3 meses seguidos | `core/analista/gatilhos.ts` |
+| P11-S9 | Dias de dados para o gráfico | Dias cobertos pelos períodos das importações bem-sucedidas; gráfico mostra os últimos 30 dias | `core/analista/indicadores.ts` |
+| P11-S10 | Audiência | Lida da view `audiencia_semanas` do pacote da Audiência (canal, semana_inicio, seguidores_inicio, seguidores_fim, saidas); ausente = "aguardando dados" | `_shared/analista/leitura.ts` |
+| P11-S11 | Metas de taxa em porcentagem | Digitadas em % e guardadas como fração | `src/pages/resultados/Cartoes.tsx` |
