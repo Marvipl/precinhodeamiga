@@ -30,3 +30,7 @@ import_map = "./functions/import_map.json"
 [functions.agente-ping]
 verify_jwt = true
 import_map = "./functions/import_map.json"
+
+[functions.integracoes-estado]
+verify_jwt = true
+import_map = "./functions/import_map.json"
