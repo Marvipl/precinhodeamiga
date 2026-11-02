@@ -62,3 +62,4 @@ Ordem sugerida: do item 1 ao 9. Nenhuma chave entra no repositório.
 
 ## Itens acrescentados pelos pacotes
 <!-- Cada pacote acrescenta aqui o que só o dono pode fazer, com uma linha por item. -->
+- [ ] (P6) Depois de cadastrar os segredos, abrir Configurações > Integrações e conferir que cada integração aparece "Conectada".
