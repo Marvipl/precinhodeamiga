@@ -67,3 +67,19 @@ import_map = "./functions/import_map.json"
 [functions.analista]
 verify_jwt = false
 import_map = "./functions/import_map.json"
+
+[functions.post-aprovar]
+verify_jwt = true
+import_map = "./functions/import_map.json"
+
+[functions.post-manual]
+verify_jwt = true
+import_map = "./functions/import_map.json"
+
+[functions.post-atualizar-preco]
+verify_jwt = true
+import_map = "./functions/import_map.json"
+
+[functions.publicar-bloco]
+verify_jwt = false
+import_map = "./functions/import_map.json"
