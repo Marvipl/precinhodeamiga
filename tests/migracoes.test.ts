@@ -112,3 +112,16 @@ describe('migrações', () => {
     await expect(db.exec(`insert into agente_jobs (rotina, contrato, chave_unica) values ('pa-coach', 'ping/v1', 'ping:t')`)).rejects.toThrow();
   });
 });
+
+describe('P1: coleta da Shopee', () => {
+  it('produtos ganham a coluna prazo e o preço é um por produto por dia', async () => {
+    const p = await db.query<{ id: string }>(
+      `insert into produtos (shopee_item_id, shopee_shop_id, nome, url_produto, prazo)
+       values ('1', '1', 'Produto de teste A', 'https://exemplo.invalid/p/1/1', now()) returning id`,
+    );
+    const id = p.rows[0].id;
+    await db.query(`insert into precos_observados (produto_id, observado_em, preco) values ($1, '2026-11-02', 10)`, [id]);
+    await expect(db.query(`insert into precos_observados (produto_id, observado_em, preco) values ($1, '2026-11-02', 11)`, [id])).rejects.toThrow();
+    await db.query(`delete from produtos where id = $1`, [id]);
+  });
+});

@@ -3,7 +3,7 @@
 import { clienteDoUsuario, clienteServico, env, json, preflight } from '../_shared/ambiente.ts';
 import { aprovarOferta, ErroPost } from '../_shared/post/servico.ts';
 import { PostStoreSupabase } from '../_shared/post/store-supabase.ts';
-import { GeradorLinkIndisponivel, GeradorLinkSimulado } from '../_shared/post/links.ts';
+import { GeradorLinkSimulado, geradorLinkPara } from '../_shared/post/links.ts';
 
 Deno.serve(async (req) => {
   const pf = preflight(req);
@@ -13,10 +13,9 @@ Deno.serve(async (req) => {
   const { data: papel } = await usuario.rpc('meu_papel');
   if (!u?.user || papel !== 'operadora') return json({ erro: 'Só a Lana aprova posts.' }, 403);
   const corpo = (await req.json().catch(() => ({}))) as Record<string, unknown>;
-  const real = env('SHOPEE_MODO') !== 'simulado' && !!env('SHOPEE_AFFILIATE_APP_ID') && !!env('SHOPEE_AFFILIATE_APP_SECRET');
   try {
     const r = await aprovarOferta(
-      { store: new PostStoreSupabase(clienteServico()), links: real ? new GeradorLinkIndisponivel() : new GeradorLinkSimulado() },
+      { store: new PostStoreSupabase(clienteServico()), links: geradorLinkPara({ SHOPEE_MODO: env('SHOPEE_MODO'), SHOPEE_AFFILIATE_APP_ID: env('SHOPEE_AFFILIATE_APP_ID'), SHOPEE_AFFILIATE_APP_SECRET: env('SHOPEE_AFFILIATE_APP_SECRET') }, new GeradorLinkSimulado()) },
       { oferta_id: corpo.oferta_id, canais: corpo.canais, frase: corpo.frase, userId: u.user.id },
     );
     return json(r);

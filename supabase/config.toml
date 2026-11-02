@@ -83,3 +83,7 @@ import_map = "./functions/import_map.json"
 [functions.publicar-bloco]
 verify_jwt = false
 import_map = "./functions/import_map.json"
+
+[functions.coleta-shopee]
+verify_jwt = false
+import_map = "./functions/import_map.json"
