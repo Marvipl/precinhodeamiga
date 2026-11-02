@@ -1,0 +1,32 @@
+# Configuração do Supabase CLI (local e deploy). O project_id real é ligado pelo dono com `supabase link`.
+project_id = "precinho-de-amiga"
+
+[auth]
+site_url = "http://localhost:5173"
+additional_redirect_urls = ["http://localhost:5173"]
+# Sem cadastro aberto (seção 2): só e-mails em acesso_permitido ganham perfil, e o front usa shouldCreateUser=false.
+enable_signup = false
+# Sessão longa no celular (F-01): token renova sozinho; refresh token não expira por inatividade curta.
+jwt_expiry = 3600
+
+[auth.email]
+enable_signup = false
+double_confirm_changes = true
+enable_confirmations = false
+
+# Funções chamadas por quem não tem login do Supabase: validam o próprio token.
+[functions.agente-disparar]
+verify_jwt = false
+import_map = "./functions/import_map.json"
+
+[functions.agente-resultado]
+verify_jwt = false
+import_map = "./functions/import_map.json"
+
+[functions.agente-entrada]
+verify_jwt = false
+import_map = "./functions/import_map.json"
+
+[functions.agente-ping]
+verify_jwt = true
+import_map = "./functions/import_map.json"
