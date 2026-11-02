@@ -48,3 +48,18 @@ Cada linha diz o que foi decidido e onde está no código. Quando o dono confirm
 | S25 | Repositório dos agentes | `precinho-agentes`, gerado a partir de `agentes/` | pacote dos Agentes |
 | S26 | Guarda de dados | Mensagens 90 dias após a última interação; registro dos jobs 90 dias; exclusão a pedido em até 15 dias | pacotes da V2 e limpeza |
 | S27 | Eliminatórios da loja | Nota mínima e avaliações mínimas sem valor (`null` = não filtra) até o dono definir | `core/config.ts` |
+
+## Crescimento e conteúdo extra (pacote P14, F-27 e F-28)
+
+| ID | Tema | Valor adotado | Onde |
+|---|---|---|---|
+| S-P14-1 | Quando a lista de achados de uma data aparece nas táticas | De hoje até 30 dias antes da data de pico | `core/crescimento/regras.ts` |
+| S-P14-2 | Itens da lista de achados | Até 10 ofertas aprovadas nos últimos 14 dias, maior nota primeiro, sem repetir produto | `core/crescimento/regras.ts` |
+| S-P14-3 | Origem do link de entrada no convite ao núcleo inicial | `convite` (`/entrar?o=convite`) | `core/crescimento/regras.ts` |
+| S-P14-4 | Pedido parado "em preparo" (job com erro ou expirado) | Pode ser pedido de novo após 60 minutos | `core/crescimento/regras.ts` |
+| S-P14-5 | Contrato | Novo `redacao-extra/v1` na rotina `pa-redacao` (não estende `redacao/v1`) | `core/contratos/redacao-extra.ts` |
+| S-P14-6 | Preços e nomes nos textos extras | A Redatora só escreve frases; nome e preço vêm do banco e o texto é montado por código. A IA não acrescenta itens à lista | `core/crescimento/montar.ts` |
+| S-P14-7 | Aviso de comissão | Lista de achados e post de respostas terminam com "Link com comissão" (saem nos canais). O roteiro de vídeo não é post | `core/crescimento/regras.ts` |
+| S-P14-8 | Dúvidas repetidas | Tabela `duvidas_registradas` (tema, ID interno da pessoa, pergunta). Quem grava é a Atendente (pacote da Comunidade); a IA da redação recebe só tema e perguntas, sem identificação | migração `20261102230100_crescimento.sql` |
+| S-P14-9 | Publicação dos textos extras | Nada sai sozinho: a Lana copia e posta. Levar o post de respostas para a fila de posts do pacote de Publicação fica como evolução | `src/pages/comunidade/Crescimento.tsx` |
+| S-P14-10 | Junção de pedidos de 5 minutos da rotina de redação | Não implementada neste pacote: cada pedido vira um job (teto diário de 10 da rotina continua valendo) | `_shared/crescimento/pedir.ts` |
