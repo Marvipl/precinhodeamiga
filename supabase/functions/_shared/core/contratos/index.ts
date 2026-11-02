@@ -12,6 +12,8 @@ import { ping } from './ping.ts';
 import { redacaoExtra } from './redacao-extra.ts';
 import { coach } from './coach.ts';
 import { radar } from './radar.ts';
+import { curadoria } from './curadoria.ts';
+import { redacao } from './redacao.ts';
 
 export interface Contrato<E = unknown, S = unknown> {
   id: string; // ex.: 'curadoria/v1'
@@ -29,6 +31,8 @@ export const CONTRATOS: Contrato<any, any>[] = [
   redacaoExtra,
   coach,
   radar,
+  curadoria,
+  redacao,
 ];
 
 export function contrato(id: string): Contrato | undefined {

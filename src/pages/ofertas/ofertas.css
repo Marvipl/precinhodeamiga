@@ -1,0 +1,24 @@
+/* Complementos da tela Ofertas. A base vem do mock (src/styles/global.css). */
+.thumb img{width:100%; height:100%; object-fit:cover; display:block}
+.offer-pills{display:flex; flex-wrap:wrap; gap:6px}
+.offer-expirada{opacity:.7}
+.previa{display:flex; flex-direction:column; gap:6px}
+.previa-rotulo{font-size:12px; font-weight:800; color:var(--muted)}
+.previa .bubble{max-width:none}
+.reasons mark{background:var(--warn-soft); color:var(--warn); border-radius:4px; padding:0 3px}
+.canais-aprovar{display:flex; flex-wrap:wrap; gap:12px; align-items:center; border:0; margin:0; padding:0}
+.canais-aprovar legend{font-size:12px; font-weight:800; color:var(--muted); float:left; margin-right:4px}
+.canais-aprovar .switch{margin-left:0; min-height:44px}
+.offer-actions-2{flex-wrap:wrap; margin-top:0; padding-top:0}
+.offer-actions .btn{min-height:44px}
+.field textarea,.field .campo,.filters .busca{border:1px solid var(--line); background:var(--surface); color:var(--ink); border-radius:12px; padding:10px 12px; font:inherit; min-height:44px; width:100%}
+.filters .busca{flex:1 1 200px; width:auto; border-radius:999px}
+.conta{font-size:12px; color:var(--faint)}
+.conta-erro,.erro-campo,.aviso-canal{color:var(--warn); font-weight:700; font-size:13px}
+.motivos-pulo .chip{min-height:44px}
+.nota-dono{font-size:14px; color:var(--muted); border:1px dashed var(--line); border-radius:var(--r-md); padding:10px 14px}
+.contador{font-size:13px; font-weight:800; color:var(--muted)}
+.pedidos-abertos{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px; font-size:14px}
+.pedidos-abertos li{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8px; border:1px solid var(--line); border-radius:var(--r-sm); padding:8px 12px}
+.expiradas summary{cursor:pointer; font-weight:800; color:var(--muted); min-height:44px; display:flex; align-items:center}
+.expiradas .offers{margin-top:12px}

@@ -120,3 +120,15 @@ Cada linha diz o que foi decidido e onde está no código. Quando o dono confirm
 | P9-8 | Mensagens do Radar | A IA não escreve link nenhum; o convite traz a marca `{link}` e o código põe o link de entrada. `{seguidores}` fica para a Lana completar até a Audiência existir | contrato `radar/v1` |
 | P9-9 | Quem muda lugares | Só a função `radar-acao` (membros logados); a tabela é só leitura pelo RLS | migração `20261102180000` |
 | P9-10 | Recusados e descartados | Saem da tela e a chave do lugar continua na lista "já vistos" do job semanal | `criar_job_radar`, processador `radar/v1` |
+
+## Fila de ofertas (pacote P2, F-03 a F-05)
+
+| ID | Tema | Valor adotado | Onde |
+|---|---|---|---|
+| S-P2-1 | Opções por pedido de produto (Fluxo B) | Até 2, dentro do preço máximo; gravadas em `pedido_opcoes`; só os pedidos da Lana (e os "achados a pedido") entram na fila | `core/ofertas/curadoria.ts` |
+| S-P2-2 | Pedido sob demanda (F-05) | Job `curadoria:pedido:<id>` com candidatas dos produtos já coletados (nome parecido, em estoque, preço até o máximo), sem preço "de"; sem candidata, não gasta disparo e espera a rodada diária | `_shared/ofertas/pedido.ts` |
+| S-P2-3 | Oferta não decidida no dia | Expira à meia-noite (Brasília) ou no prazo da oferta; limpeza a cada 10 min | migração `20261102110000_ofertas_fila.sql` |
+| S-P2-4 | "Pedir outra versão" sem retorno | Depois de 60 min a oferta volta para a fila com a frase anterior e um aviso | migração `20261102110000_ofertas_fila.sql` |
+| S-P2-5 | Aprovar ou editar enquanto a Redatora escreve | Permitido; vale a frase atual e a nova versão é descartada ao chegar | `_shared/ofertas/acoes.ts` |
+| S-P2-6 | Prévia do post na fila | Formato 5.4 do WhatsApp com o link indicado por texto (o link real só existe na aprovação); troca pelo formatador do pacote de posts quando estiver no main | `core/ofertas/previa.ts` |
+| S-P2-7 | Motivos rápidos do pulo | Quatro sugestões e texto livre (até 200 caracteres); motivo continua opcional | `core/ofertas/fila.ts` |

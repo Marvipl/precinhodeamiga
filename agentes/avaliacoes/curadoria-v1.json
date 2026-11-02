@@ -1,0 +1,215 @@
+{
+  "contrato": "curadoria/v1",
+  "descricao": "Rodada diária: até o tamanho da fila, só candidatas da entrada, frase até 140 caracteres sem promessa e sem emoji; pedidos com até 2 opções.",
+  "casos": [
+    {
+      "nome": "rodada-com-pedido",
+      "entrada": {
+        "data": "2026-11-09",
+        "tamanho_fila": 2,
+        "candidatas": [
+          {
+            "produto_id": "00000000-0000-4000-8000-000000000001",
+            "nome": "Produto de teste A",
+            "nicho_id": "00000000-0000-4000-8000-000000000900",
+            "nicho_nome": "Nicho de teste",
+            "fora_nicho_principal": false,
+            "imagem_url": null,
+            "url_produto": "https://exemplo.invalid/produto/1",
+            "preco_atual": 40,
+            "preco_referencia": 50.0,
+            "desconto_real": 0.2,
+            "dias_historico": 20,
+            "historico_curto": false,
+            "comissao_taxa": 0.08,
+            "comissao_extra": true,
+            "comissao_estimada": 3.2,
+            "loja_nome": "Loja de teste",
+            "loja_nota": 4.8,
+            "produto_nota": 4.7,
+            "vendas": 250,
+            "prazo": null,
+            "nota": 85,
+            "nota_detalhe": {
+              "desconto": 30,
+              "comissao": 20,
+              "avaliacao": 15,
+              "aderencia": 10,
+              "prazo": 0
+            },
+            "alertas": []
+          },
+          {
+            "produto_id": "00000000-0000-4000-8000-000000000002",
+            "nome": "Produto de teste B",
+            "nicho_id": "00000000-0000-4000-8000-000000000900",
+            "nicho_nome": "Nicho de teste",
+            "fora_nicho_principal": false,
+            "imagem_url": null,
+            "url_produto": "https://exemplo.invalid/produto/2",
+            "preco_atual": 55,
+            "preco_referencia": 68.75,
+            "desconto_real": 0.2,
+            "dias_historico": 20,
+            "historico_curto": false,
+            "comissao_taxa": 0.03,
+            "comissao_extra": false,
+            "comissao_estimada": 1.65,
+            "loja_nome": "Loja de teste",
+            "loja_nota": 4.8,
+            "produto_nota": 4.7,
+            "vendas": 250,
+            "prazo": null,
+            "nota": 80,
+            "nota_detalhe": {
+              "desconto": 30,
+              "comissao": 20,
+              "avaliacao": 15,
+              "aderencia": 10,
+              "prazo": 0
+            },
+            "alertas": []
+          },
+          {
+            "produto_id": "00000000-0000-4000-8000-000000000003",
+            "nome": "Produto de teste C",
+            "nicho_id": "00000000-0000-4000-8000-000000000900",
+            "nicho_nome": "Nicho de teste",
+            "fora_nicho_principal": false,
+            "imagem_url": null,
+            "url_produto": "https://exemplo.invalid/produto/3",
+            "preco_atual": 30,
+            "preco_referencia": null,
+            "desconto_real": null,
+            "dias_historico": 3,
+            "historico_curto": true,
+            "comissao_taxa": 0.03,
+            "comissao_extra": false,
+            "comissao_estimada": 0.9,
+            "loja_nome": "Loja de teste",
+            "loja_nota": 4.8,
+            "produto_nota": 4.7,
+            "vendas": 250,
+            "prazo": null,
+            "nota": 75,
+            "nota_detalhe": {
+              "desconto": 30,
+              "comissao": 20,
+              "avaliacao": 15,
+              "aderencia": 10,
+              "prazo": 0
+            },
+            "alertas": [
+              {
+                "tipo": "historico_curto",
+                "texto": "Histórico de preço curto: observado há 3 dias. Confira o preço antes de aprovar."
+              }
+            ]
+          },
+          {
+            "produto_id": "00000000-0000-4000-8000-000000000004",
+            "nome": "Produto de teste D",
+            "nicho_id": "00000000-0000-4000-8000-000000000900",
+            "nicho_nome": "Nicho de teste",
+            "fora_nicho_principal": false,
+            "imagem_url": null,
+            "url_produto": "https://exemplo.invalid/produto/4",
+            "preco_atual": 90,
+            "preco_referencia": 112.5,
+            "desconto_real": 0.2,
+            "dias_historico": 20,
+            "historico_curto": false,
+            "comissao_taxa": 0.03,
+            "comissao_extra": false,
+            "comissao_estimada": 2.7,
+            "loja_nome": "Loja de teste",
+            "loja_nota": 4.8,
+            "produto_nota": 4.7,
+            "vendas": 250,
+            "prazo": null,
+            "nota": 70,
+            "nota_detalhe": {
+              "desconto": 30,
+              "comissao": 20,
+              "avaliacao": 15,
+              "aderencia": 10,
+              "prazo": 0
+            },
+            "alertas": []
+          }
+        ],
+        "pedidos": [
+          {
+            "id": "00000000-0000-4000-8000-000000000500",
+            "texto": "Produto de teste até R$ 50",
+            "preco_max": 50
+          }
+        ],
+        "nichos": [
+          {
+            "id": "00000000-0000-4000-8000-000000000900",
+            "nome": "Nicho de teste",
+            "principal": true
+          }
+        ],
+        "pulos_recentes": [
+          {
+            "produto_id": null,
+            "nome": "Produto de teste Z",
+            "motivo": "Preço não convence"
+          }
+        ]
+      },
+      "criterios": [
+        {
+          "tipo": "maxItens",
+          "campo": "ofertas",
+          "max": 2
+        },
+        {
+          "tipo": "tamanhoMax",
+          "campo": "ofertas[].frase",
+          "max": 140
+        },
+        {
+          "tipo": "semPromessa",
+          "campo": "ofertas[].frase"
+        },
+        {
+          "tipo": "semEmoji",
+          "campo": "ofertas[].frase"
+        },
+        {
+          "tipo": "semPromessa",
+          "campo": "ofertas[].motivos[]"
+        },
+        {
+          "tipo": "semNumeroInventado",
+          "campo": "ofertas[].motivos[]"
+        },
+        {
+          "tipo": "maxItens",
+          "campo": "pedidos[].opcoes",
+          "max": 2
+        }
+      ]
+    },
+    {
+      "nome": "sem-candidatas",
+      "entrada": {
+        "data": "2026-11-09",
+        "tamanho_fila": 8,
+        "candidatas": [],
+        "pedidos": [],
+        "nichos": []
+      },
+      "criterios": [
+        {
+          "tipo": "maxItens",
+          "campo": "ofertas",
+          "max": 0
+        }
+      ]
+    }
+  ]
+}
