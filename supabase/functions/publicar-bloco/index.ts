@@ -3,7 +3,7 @@
 import { clienteServico, env, exigirServico, json } from '../_shared/ambiente.ts';
 import { publicarBloco } from '../_shared/post/servico.ts';
 import { PostStoreSupabase } from '../_shared/post/store-supabase.ts';
-import { GeradorLinkIndisponivel } from '../_shared/post/links.ts';
+import { GeradorLinkIndisponivel, geradorLinkPara } from '../_shared/post/links.ts';
 import { TelegramBotApi, TelegramFalso } from '../_shared/telegram/cliente.ts';
 
 Deno.serve(async (req) => {
@@ -13,7 +13,7 @@ Deno.serve(async (req) => {
   const canal = env('TELEGRAM_CHANNEL_ID');
   const telegram = token && canal && env('TELEGRAM_MODO') !== 'simulado' ? new TelegramBotApi(token, canal) : new TelegramFalso();
   try {
-    const r = await publicarBloco({ store: new PostStoreSupabase(clienteServico()), links: new GeradorLinkIndisponivel(), telegram });
+    const r = await publicarBloco({ store: new PostStoreSupabase(clienteServico()), links: geradorLinkPara({ SHOPEE_MODO: env('SHOPEE_MODO'), SHOPEE_AFFILIATE_APP_ID: env('SHOPEE_AFFILIATE_APP_ID'), SHOPEE_AFFILIATE_APP_SECRET: env('SHOPEE_AFFILIATE_APP_SECRET') }, new GeradorLinkIndisponivel()), telegram });
     return json({ telegram: telegram.simulado ? 'simulado' : 'real', ...r });
   } catch (e) {
     console.error(e);
