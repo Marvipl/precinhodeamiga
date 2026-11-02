@@ -64,3 +64,7 @@ Ordem sugerida: do item 1 ao 9. Nenhuma chave entra no repositório.
 <!-- Cada pacote acrescenta aqui o que só o dono pode fazer, com uma linha por item. -->
 - [ ] (P6) Depois de cadastrar os segredos, abrir Configurações > Integrações e conferir que cada integração aparece "Conectada".
 - [ ] P12: publicar a função `coach-semanal` e, com `AGENTES_MODO=real`, conferir na primeira segunda-feira (06:23) que a revisão da Coach aparece na aba Plano de 90 dias.
+- [ ] (P7 Notificações) Gerar as chaves VAPID com `npx web-push generate-vapid-keys` e guardar: `supabase secrets set VAPID_PUBLIC_KEY=<pública> VAPID_PRIVATE_KEY=<privada> VAPID_SUBJECT=mailto:<seu e-mail>`; a pública também vai no Netlify como `VITE_VAPID_PUBLIC_KEY`.
+- [ ] (P7 Notificações) Ligar os envios de verdade com `supabase secrets set NOTIFICACOES_MODO=real` (sem isso a função `notificar` só simula e registra).
+- [ ] (P7 Notificações) Alternativa pelo Telegram: a Lana manda qualquer mensagem ao bot e o Marcus guarda o id do chat dela em `TELEGRAM_LANA_CHAT_ID` (dá para ver em `https://api.telegram.org/bot<token>/getUpdates`).
+- [ ] (P7 Notificações) No celular da Lana: instalar o app na tela inicial (obrigatório no iPhone) e tocar em "Ativar notificações neste aparelho" em Configurações; depois "Enviar notificação de teste".

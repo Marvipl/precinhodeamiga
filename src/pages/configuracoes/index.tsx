@@ -1,5 +1,6 @@
 // F-14 Configurações: campos por papel. A Lana edita os da operação; os do Marcus aparecem bloqueados para ela.
 import { CONFIG, camposDoPapel, type CampoConfig, type ChaveConfig } from '@core/config.ts';
+import { AtivarNotificacoes } from '@/components/AtivarNotificacoes';
 import { CabecalhoTela } from '@/components/Vazio';
 import { useAuth } from '@/lib/auth';
 import { useConfig } from '@/lib/config';
@@ -40,6 +41,7 @@ export default function Configuracoes() {
       />
       {isLoading || !config ? <p className="carregando">Carregando...</p> : null}
       <div className="stack">
+        <AtivarNotificacoes />
         <Nichos />
         {config
           ? GRUPOS.map((g) => {
