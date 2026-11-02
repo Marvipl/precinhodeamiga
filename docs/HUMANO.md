@@ -79,3 +79,6 @@ Ordem sugerida: do item 1 ao 9. Nenhuma chave entra no repositório.
 - [ ] (P9) Revisão jurídica do aviso de privacidade da página de entrada (`src/pages/entrada-publica/index.tsx`).
 - [ ] (P9) No primeiro disparo real do `pa-radar`, conferir se a busca na web funciona no ambiente com rede restrita (ponto 14 da seção 11).
 - [ ] (P2) Confirmar as suposições S-P2-1 a S-P2-7 de `docs/decisions.md` (fila de ofertas: opções por pedido, expiração da fila, outra versão).
+- [ ] (P11 Resultados) Exportar um relatório de conversões real no painel de afiliados e conferir se as colunas batem com as reconhecidas em `core/analista/conversoes.ts` (pedido, data, status, comissão total, Comissão Extra, Sub_id1 a Sub_id5). Se o nome de alguma coluna for diferente, avisar para acrescentar o apelido.
+- [ ] (P11 Resultados) Com a API liberada, conferir na documentação da Open API a consulta do relatório de conversões e de pagamentos, para ligar a importação diária (hoje ela registra "importação com erro" e a tela pede o CSV).
+- [ ] (P11 Resultados) Confirmar se o painel mostra a comissão líquida paga por mês; se não mostrar, a Lana informa o valor recebido em Resultados uma vez por mês.
