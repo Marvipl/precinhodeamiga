@@ -67,3 +67,19 @@ Cada linha diz o que foi decidido e onde está no código. Quando o dono confirm
 | S-P14-8 | Dúvidas repetidas | Tabela `duvidas_registradas` (tema, ID interno da pessoa, pergunta). Quem grava é a Atendente (pacote da Comunidade); a IA da redação recebe só tema e perguntas, sem identificação | migração `20261102230100_crescimento.sql` |
 | S-P14-9 | Publicação dos textos extras | Nada sai sozinho: a Lana copia e posta. Levar o post de respostas para a fila de posts do pacote de Publicação fica como evolução | `src/pages/comunidade/Crescimento.tsx` |
 | S-P14-10 | Junção de pedidos de 5 minutos da rotina de redação | Não implementada neste pacote: cada pedido vira um job (teto diário de 10 da rotina continua valendo) | `_shared/crescimento/pedir.ts` |
+
+## P12 Plano de 90 dias e Coach (F-24)
+
+| Tema | Decisão | Onde |
+|---|---|---|
+| Catálogo do plano | Tarefas p1 a p23, textos e responsáveis copiados do mock; ficam no código, só o progresso vai ao banco (`plano_marcas`) | `core/coach/plano.ts` |
+| Tarefa da plataforma ou de agente | Aparece no checklist, mas não conta como pendente nem atrasada da Lana | `core/coach/plano.ts` (`dela`) |
+| Tarefa atrasada | Tarefa da Lana não feita depois do último dia do seu período | `core/coach/plano.ts` |
+| Períodos | Semana 1 = dias 1 a 7; semanas 2 a 4 = dias 8 a 30; gate do dia 30 = dia 31; dias 31 a 90 vão até o gate do dia 90 (dia 91) | `core/coach/plano.ts` |
+| Fases da linha do tempo | Em dias a partir do início: 1 a 7, 8 a 42, 43 a 60, 61 a 90 (iguais às do mock com início em 2/11/2026) | `core/coach/plano.ts` |
+| Marcas da linha do tempo | Todas as datas de `datas_pico` dentro dos 90 dias (inclui o Natal, que o mock não mostra) e os gates 30 e 90 | `core/coach/plano.ts` |
+| "Nome e logo da marca" | Já vem marcada, como no mock; uma marca salva no servidor vence | `core/coach/plano.ts` |
+| Revisão da Coach | Até 3 prioridades (só ids de tarefas pendentes da entrada; o código descarta o resto) e uma nota de até 600 caracteres; uma por semana (`coach:<segunda>`) | `core/coach/revisao.ts`, `core/contratos/coach.ts` |
+| Resultados enviados à Coach | Horas registradas da semana anterior sem montagem; comissão fica `null` até existir a importação de conversões (P11) | `_shared/coach/semanal.ts` |
+| Ajuste do roteiro | `tarefaDaSemana()` devolve a primeira prioridade pendente da última revisão, ou a primeira tarefa pendente da Lana; o roteiro do dia (P5) usa esta função para a "Tarefa da semana do plano" | `core/coach/plano.ts` |
+| Pedir revisão na hora | Só o dono, pela tela do Plano; respeita a chave única da semana e o teto diário da rotina | `coach-semanal` |
