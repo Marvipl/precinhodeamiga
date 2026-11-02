@@ -31,6 +31,10 @@ import_map = "./functions/import_map.json"
 verify_jwt = true
 import_map = "./functions/import_map.json"
 
+[functions.conteudo-extra-pedir]
+verify_jwt = true
+import_map = "./functions/import_map.json"
+
 [functions.integracoes-estado]
 verify_jwt = true
 
