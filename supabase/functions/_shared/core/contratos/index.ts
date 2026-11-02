@@ -15,6 +15,7 @@ import { radar } from './radar.ts';
 import { curadoria } from './curadoria.ts';
 import { redacao } from './redacao.ts';
 import { analistaResumo } from './analista-resumo.ts';
+import { analistaPrint } from './analista-print.ts';
 
 export interface Contrato<E = unknown, S = unknown> {
   id: string; // ex.: 'curadoria/v1'
@@ -35,6 +36,7 @@ export const CONTRATOS: Contrato<any, any>[] = [
   curadoria,
   redacao,
   analistaResumo,
+  analistaPrint,
 ];
 
 export function contrato(id: string): Contrato | undefined {
