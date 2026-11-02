@@ -1,0 +1,15 @@
+/* Complementos da tela Publicar que o mock não tem (post manual e artes reais). */
+.pm-form{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px}
+.pm-form .full{grid-column:1 / -1}
+.pm-form .field small{font-size:12px; color:var(--muted)}
+.pm-form .field .erro{font-size:12px; color:var(--warn); font-weight:700}
+.pm-form textarea.input{min-height:88px; resize:vertical}
+.pm-canais{display:flex; flex-wrap:wrap; gap:8px}
+.pm-canais label{display:inline-flex; align-items:center; gap:8px; min-height:44px; padding:0 12px; border:1px solid var(--line); border-radius:999px; font-weight:800; font-size:14px; cursor:pointer}
+.pm-canais input{width:18px; height:18px; accent-color:var(--primary)}
+.art-real{display:flex; flex-direction:column; gap:8px; min-width:0}
+.art-real img{width:100%; aspect-ratio:9/16; border-radius:var(--r-md); display:block; background:var(--surface-2); object-fit:cover}
+.art-real .btn{justify-content:center}
+.revisar{display:flex; flex-wrap:wrap; gap:8px; align-items:flex-end}
+.revisar .field input{max-width:160px}
+@media (max-width:720px){ .pm-form{grid-template-columns:minmax(0,1fr)} }
