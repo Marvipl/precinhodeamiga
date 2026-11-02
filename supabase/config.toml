@@ -46,3 +46,16 @@ import_map = "./functions/import_map.json"
 [functions.coach-semanal]
 verify_jwt = false
 import_map = "./functions/import_map.json"
+
+# P9: página de entrada pública (sem login) e lembrete do Radar (pg_cron, confere a chave de serviço).
+[functions.entrada-clique]
+verify_jwt = false
+import_map = "./functions/import_map.json"
+
+[functions.radar-acao]
+verify_jwt = true
+import_map = "./functions/import_map.json"
+
+[functions.radar-lembrete]
+verify_jwt = false
+import_map = "./functions/import_map.json"

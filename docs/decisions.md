@@ -105,3 +105,18 @@ Cada linha diz o que foi decidido e onde está no código. Quando o dono confirm
 | Lançamento manual | Fim antes do início vira o dia seguinte; no máximo 16 horas; sem sobrepor outra sessão própria; sem horário no futuro | `core/tempo.ts` |
 | Horas da comissão por hora | Soma das sessões da operadora no mês, sem montagem; o dono vê as horas da Lana | `src/pages/hoje/sessoes.ts` |
 | Uma sessão aberta por pessoa | Índice único parcial no banco | migração `20261102140000_registro_tempo.sql` |
+
+## Página de entrada e Radar (P9, 02/11/2026)
+
+| # | Suposição ou decisão | Valor usado | Onde |
+|---|---|---|---|
+| P9-1 | O que é "clique no link de entrada" | Abrir a página (`botao = 'pagina'`); os toques em "Seguir no WhatsApp/Telegram" contam à parte (`wa`, `tg`) | `entrada_cliques`, `core/radar/entrada.ts` |
+| P9-2 | Contagem duplicada | Mesmo resumo (sal do dia + IP + navegador + origem + botão, SHA-256) conta uma vez por dia; sal e resumos apagados em 24 horas | migração `20261102180000`, `entrada-clique` |
+| P9-3 | Origens fixas além dos lugares | `direto` (sem origem ou desconhecida), `status` (artes do Status) e `convite` (convite pessoal) | `core/radar/entrada.ts` |
+| P9-4 | Origem do lugar aprovado | Slug do nome, até 40 caracteres, com `-2`, `-3` se já existir; não muda depois de criada | `gerarOrigem` |
+| P9-5 | "Divulguei hoje" fora do dia permitido | Bloqueado pelo código (5.11 item 3); a próxima vez permitida aparece no card | `core/radar/agenda.ts`, `radar-acao` |
+| P9-6 | Intervalo combinado | Em dias, de 1 a 365; valor inicial do formulário 7 | tela Radar |
+| P9-7 | Lembrete no dia permitido | Uma notificação por dia às 9h (Brasília) com os lugares liberados | `radar-lembrete`, cron `radar-lembrete` |
+| P9-8 | Mensagens do Radar | A IA não escreve link nenhum; o convite traz a marca `{link}` e o código põe o link de entrada. `{seguidores}` fica para a Lana completar até a Audiência existir | contrato `radar/v1` |
+| P9-9 | Quem muda lugares | Só a função `radar-acao` (membros logados); a tabela é só leitura pelo RLS | migração `20261102180000` |
+| P9-10 | Recusados e descartados | Saem da tela e a chave do lugar continua na lista "já vistos" do job semanal | `criar_job_radar`, processador `radar/v1` |

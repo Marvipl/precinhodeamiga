@@ -452,3 +452,12 @@ svg.i{width:18px; height:18px; flex:none; fill:none; stroke:currentColor; stroke
   .side > .topo{display:flex; margin-left:auto}
 }
 .side-foot > span{flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis}
+
+/* P9: página de entrada pública e formulário de aprovação do Radar */
+.entrada-publica .calc{display:flex; flex-direction:column; gap:12px}
+.entrada-frase{font-size:22px; line-height:1.25}
+.entrada-botao{justify-content:center; min-height:48px; font-size:16px}
+.entrada-privacidade{text-align:center; max-width:46ch; margin:0 auto 32px}
+.aprovar{display:flex; flex-direction:column; gap:10px; border-top:1px solid var(--line); padding-top:10px}
+.aprovar .dias{display:flex; flex-wrap:wrap; gap:6px}
+.aprovar input[type="number"]{border:1px solid var(--line); background:var(--surface); color:var(--ink); border-radius:12px; padding:10px 12px; font:inherit; max-width:120px; min-height:44px}

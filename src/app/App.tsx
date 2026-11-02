@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AuthProvider, useAuth } from '@/lib/auth';
@@ -7,6 +7,9 @@ import { SpriteIcones } from '@/components/Icone';
 import { ToastProvider } from '@/components/Toast';
 import Entrar from '@/pages/entrar';
 import { ABAS, PAGINA_CONFIGURACOES as Configuracoes } from './rotas';
+
+// Telas públicas (seção 4.3), fora do login.
+const EntradaPublica = lazy(() => import('@/pages/entrada-publica'));
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 30_000, retry: 1, refetchOnWindowFocus: true } },
@@ -37,7 +40,10 @@ export function App() {
           <SpriteIcones />
           <BrowserRouter>
             <Suspense fallback={<p className="carregando">Carregando...</p>}>
-              <Portao />
+              <Routes>
+                <Route path="/entrar" element={<EntradaPublica />} />
+                <Route path="*" element={<Portao />} />
+              </Routes>
             </Suspense>
           </BrowserRouter>
         </ToastProvider>
