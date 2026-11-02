@@ -1,0 +1,22 @@
+{
+  "contrato": "ping/v1",
+  "descricao": "Teste de ida e volta: a rotina devolve a mensagem recebida, sem mudar nada.",
+  "casos": [
+    {
+      "nome": "mensagem-simples",
+      "entrada": { "mensagem": "Teste de rotina da Precinho (dado fictício)" },
+      "criterios": [
+        { "tipo": "igualEntrada", "campo": "eco", "campoEntrada": "mensagem" },
+        { "tipo": "tamanhoMax", "campo": "eco", "max": 500 }
+      ]
+    },
+    {
+      "nome": "mensagem-com-acentos",
+      "entrada": { "mensagem": "Produto de teste A: ação, preço e coração" },
+      "criterios": [
+        { "tipo": "igualEntrada", "campo": "eco", "campoEntrada": "mensagem" },
+        { "tipo": "semEmoji", "campo": "eco" }
+      ]
+    }
+  ]
+}

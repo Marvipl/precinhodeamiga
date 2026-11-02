@@ -1,0 +1,91 @@
+{
+  "contrato": "coach/v1",
+  "descricao": "Revisão semanal: até 3 prioridades entre as tarefas pendentes, nota sem promessa e sem emoji.",
+  "casos": [
+    {
+      "nome": "tarefas-atrasadas",
+      "entrada": {
+        "semana": "2026-11-09",
+        "dia_plano": 8,
+        "periodos_atuais": [
+          "Semanas 2 a 4"
+        ],
+        "tarefas_pendentes": [
+          {
+            "id": "t1",
+            "texto": "Tarefa de teste A",
+            "responsavel": "Lana",
+            "periodo": "Semana 1",
+            "atrasada": true
+          },
+          {
+            "id": "t2",
+            "texto": "Tarefa de teste B",
+            "responsavel": "Lana",
+            "periodo": "Semanas 2 a 4",
+            "atrasada": false
+          },
+          {
+            "id": "t3",
+            "texto": "Tarefa de teste C",
+            "responsavel": "Lana",
+            "periodo": "Semanas 2 a 4",
+            "atrasada": false
+          },
+          {
+            "id": "t4",
+            "texto": "Tarefa de teste D",
+            "responsavel": "Lana",
+            "periodo": "Semanas 2 a 4",
+            "atrasada": false
+          }
+        ],
+        "resultados": {
+          "horas_registradas": 3,
+          "comissao_bruta": null
+        }
+      },
+      "criterios": [
+        {
+          "tipo": "maxItens",
+          "campo": "prioridades",
+          "max": 3
+        },
+        {
+          "tipo": "semPromessa",
+          "campo": "nota"
+        },
+        {
+          "tipo": "semEmoji",
+          "campo": "nota"
+        },
+        {
+          "tipo": "semEmoji",
+          "campo": "prioridades[].motivo"
+        }
+      ]
+    },
+    {
+      "nome": "sem-pendencias",
+      "entrada": {
+        "semana": "2026-11-16",
+        "dia_plano": 15,
+        "periodos_atuais": [
+          "Semanas 2 a 4"
+        ],
+        "tarefas_pendentes": [],
+        "resultados": {
+          "horas_registradas": null,
+          "comissao_bruta": null
+        }
+      },
+      "criterios": [
+        {
+          "tipo": "maxItens",
+          "campo": "prioridades",
+          "max": 0
+        }
+      ]
+    }
+  ]
+}
