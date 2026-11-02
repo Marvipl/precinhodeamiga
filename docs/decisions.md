@@ -52,6 +52,10 @@ Cada linha diz o que foi decidido e onde está no código. Quando o dono confirm
 | S-P6-2 | Validação das Configurações | Links só https (WhatsApp em whatsapp.com, Telegram em t.me); pesos da nota somam 100; artes de 3 a 5; blocos com fim depois do início; teto da rotina de 0 a 100 | `core/configuracoes.ts`, `core/painel-agentes.ts` |
 | S-P6-3 | Próxima execução no painel | Calculada pelos horários do Anexo A.3 (curadoria 05:37, Atendente a cada 30 min das 8h às 22h30, Coach 06:23, Analista 06:43 e Radar 07:07 às segundas); redação só sob demanda | `core/painel-agentes.ts` |
 | S-P6-4 | Uso do dia | Só o Marcus vê o uso contra o teto (as tentativas são só do dono pela RLS) | `src/pages/como-funciona/` |
+| P7-1 | Janela do bloco de revisão para o silêncio da Atendente (5.13) | 60 minutos a partir do início de cada bloco; fora dela, notificação da Atendente que não é urgente espera o início do próximo bloco (não sai em silêncio) | `core/notificacoes.ts` |
+| P7-2 | Tentativas de envio de notificação | 3 tentativas, 2 minutos entre elas; inscrição de push com resposta 404/410 é apagada | `core/notificacoes.ts`, `_shared/notificacoes/despachar.ts` |
+| P7-3 | Alternativa pelo Telegram | Só quando nenhum aparelho da Lana aceitou o push; só para a operadora (chat `TELEGRAM_LANA_CHAT_ID`); o dono recebe só por push | `_shared/notificacoes/despachar.ts` |
+| P7-4 | Notificação sem destino | `user_id` nulo vai para os dois membros; sem aparelho nem Telegram, fica só registrada (`resultado.sem_canal`) | `_shared/notificacoes/despachar.ts` |
 
 ## P12 Plano de 90 dias e Coach (F-24)
 

@@ -33,6 +33,9 @@ import_map = "./functions/import_map.json"
 
 [functions.integracoes-estado]
 verify_jwt = true
+
+[functions.notificar]
+verify_jwt = false
 import_map = "./functions/import_map.json"
 
 # P12: pg_cron (chave de serviço) ou o dono logado; a função confere o próprio token.
